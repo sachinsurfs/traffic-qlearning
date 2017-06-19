@@ -1,7 +1,5 @@
 package interfaces;
 
-
-
 public interface Action {
     public boolean action();
 

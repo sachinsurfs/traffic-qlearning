@@ -3,6 +3,7 @@ import interfaces.LearningModule;
 import interfaces.RoadMap;
 import interfaces.TrafficLight;
 import utils.Coords;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -320,17 +321,6 @@ public class Main {
               int dy = c.getVelocity().getYSpeed();
                   score += dx==0&&dy==0 ? -1 : 0;
               }
-
-			/*
-			//TODO : Too lazy to add a pom to use this. Instead Printing the result as a csv on console and pipe-ing it into a file
-			              CSVWriter writer = new CSVWriter(new FileWriter("output.csv"), '\t');
-			
-			
-			                   String[] entries = "first#second#third".split("#");
-			                   writer.writeNext(entries);
-			              	 writer.close();
-			
-			*/
 
           if(timeRan % TIMESTEP_INTERVAL ==0) {
             System.out.println(trafficIntensity+","+((float)totalCarsStopped)/TESTING_INTENSITY_INTERVAL +","+ timeRan% TESTING_INTENSITY_INTERVAL );
