@@ -1,4 +1,3 @@
-
 import interfaces.Car;
 import interfaces.LearningModule;
 import interfaces.RoadMap;
@@ -31,17 +30,25 @@ public class Main3 {
         double defaultTrafficIntensity = 0;
         rewardFunction = defaultRewardFunction;
         trafficIntensity = defaultTrafficIntensity;
-    	String[] currIntensity = null;
+        List<String[]> intensityList = new ArrayList<String[]>();
+        boolean vary = false;
+        
+        int intensityRange  = 5;
         if (args.length == 1) {
-        	
+        	vary = true;
     		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 
-    			String sCurrentLine = br.readLine();
-    			currIntensity = sCurrentLine.split(",");
+    			String sCurrentLine;
+    			while ((sCurrentLine = br.readLine()) != null) {
+        			String[] currIntensity = sCurrentLine.split(",");
+        			intensityList.add(currIntensity);
+        		}
+
+    			
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
-
+    		intensityRange = intensityList.size();
     	}
         
     
@@ -52,9 +59,9 @@ public class Main3 {
         //Simulation parameters
         final int TIMESTEP_INTERVAL = 100;
         final int SIMULATION_TIME = 5000 ;
-        final int TESTING_INTENSITY_INTERVAL = SIMULATION_TIME/5;
+        final int TESTING_INTENSITY_INTERVAL = SIMULATION_TIME/intensityRange;
 
-        final int STEP_TIME = 50;
+        final int STEP_TIME = 10;
 
         //Graphics and runtime parameters
         boolean graphicalOutput = true;
@@ -288,8 +295,23 @@ public class Main3 {
 
           //Simulation time
 
+          int index = 0;
+          String[] currIntensity = null;
           for (timeRan = 0; timeRan < SIMULATION_TIME; timeRan++) {
-              
+        	  if(timeRan % TESTING_INTENSITY_INTERVAL ==0) {
+        		  if(vary) {
+        			  currIntensity = intensityList.get(index);
+        			  index+=1;
+        		  }
+        		  else {
+                      trafficIntensity +=0.2;
+                      cars.clear();
+        		  }
+                  totalCarsStopped = 0;
+                  //Clearing all cars after  every intensity interval
+
+                }
+        	  
               //Params required to learn
               RoadMap currentState = map.copyMap();
               currentState.addCars(cars);
@@ -339,8 +361,8 @@ public class Main3 {
               //Spawn cars onto map extremities
               for (Coords roadEntrance : map.getRoadEntrances()) {
             	  
-            	  if(currIntensity !=null) {             	  
-	            	  trafficIntensity = Double.valueOf(currIntensity[i_tmp]);
+            	  if(vary) {           
+            		  trafficIntensity = Double.valueOf(currIntensity[i_tmp]);
 	            	  i_tmp+=1;
             	  }
             	  if (
@@ -433,20 +455,26 @@ public class Main3 {
 
 			*/
 
-         //(timeRan % TIMESTEP_INTERVAL ==0) {
-        //	  Integer tmp = timeRan% TESTING_INTENSITY_INTERVAL;
-       // 	  String key = trafficIntensity.toString()+";"+tmp.toString();
-       // 	hmap.put(key , hmap.getOrDefault(key, (float)0.0) + ((float)totalCarsStopped)/TESTING_INTENSITY_INTERVAL);
+         if (timeRan % TIMESTEP_INTERVAL ==0) {
+        	  Integer tmp = timeRan% TESTING_INTENSITY_INTERVAL;
+        	  String key;
+        	  if(vary) {
+            	  key = index-1+";"+tmp.toString();
+        	  }
+        	  else {
+        		  key = trafficIntensity.toString()+";"+tmp.toString();
+        	  }
+        	hmap.put(key , hmap.getOrDefault(key, (float)0.0) + ((float)totalCarsStopped)/TESTING_INTENSITY_INTERVAL);
 
             //System.out.println(trafficIntensity+","+((float)totalCarsStopped)/TESTING_INTENSITY_INTERVAL +","+ timeRan% TESTING_INTENSITY_INTERVAL );
-        //  }
+          }
 
 
           }
 
 
         }
-/*
+
         for (Map.Entry<String, Float> entry : hmap.entrySet()) {
             String key[] = entry.getKey().split(";");
 
@@ -457,7 +485,7 @@ public class Main3 {
 
         }
 
-*/
+
 
     }
 
