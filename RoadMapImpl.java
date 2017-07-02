@@ -15,12 +15,12 @@ import java.util.List;
 public class RoadMapImpl implements RoadMap {
     public final int gridSize = 60;
     private final Coords[] defaultEntrances = {
-	            new Coords(21, 59),
-	            new Coords(41, 59),
+        		new Coords(19, 0),
+        		new Coords(39, 0),
                 new Coords(59, 19),
                 new Coords(59, 39),
-                new Coords(39, 0),
-                new Coords(19, 0),
+	            new Coords(41, 59),
+	            new Coords(21, 59),
                 new Coords(0, 41),
                 new Coords(0, 21)        
         };

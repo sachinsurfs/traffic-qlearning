@@ -50,11 +50,16 @@ public class Viewer extends JFrame {
 
     private void displayMap(Graphics g) {
         g.setColor(roadColor);
+   
+        g.drawString("Queens Road/Minsk Sq Circle", 0, 50);   
+        g.drawString("Cubbon Road - Central St", 230, 50);   
+        g.drawString("Cubbon Road", 480, 180);   
+        g.drawString("MG Road", 490, 380);
+        g.drawString("St Marks Road", 220, 590);   
+        g.drawString("Kasturba Road-Queens Road", 420, 590);   
+        g.drawString("Kasturba Road - MG Road", 0, 430);   
+        g.drawString("Cubbon Road/Minsk Sq Circle", 0, 235);        
         
-        g.drawString("Cubbon road", 0, 20);   
-        g.drawString("MG road", 0, 40);   
-        g.drawString("A road", 0, 60);   
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; ++j) {
                 Coords k = new Coords(i, j);
