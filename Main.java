@@ -65,7 +65,7 @@ public class Main {
     			graphicalOutput = true;
     			String[] currIntensity = args[0].split(",");
         		intensityList.add(currIntensity);
-                System.out.println("Fetched Traffic intesities are " + args[0]);
+                System.out.println("Fetched Traffic intensities are " + args[0]);
         		APITime.add("Now");
     		}
         	intensityRange = intensityList.size();
