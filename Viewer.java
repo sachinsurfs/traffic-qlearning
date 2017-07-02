@@ -50,6 +50,11 @@ public class Viewer extends JFrame {
 
     private void displayMap(Graphics g) {
         g.setColor(roadColor);
+        
+        g.drawString("Cubbon road", 0, 20);   
+        g.drawString("MG road", 0, 40);   
+        g.drawString("A road", 0, 60);   
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; ++j) {
                 Coords k = new Coords(i, j);

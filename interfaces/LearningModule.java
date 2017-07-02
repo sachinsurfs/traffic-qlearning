@@ -1,8 +1,10 @@
 package interfaces;
 import java.util.List;
+import java.io.Serializable;
+
 
 //Contains the logic for our reinforcement learning.
-public interface LearningModule {
+public interface LearningModule extends Serializable {
     List<Boolean> updateTrafficLights
         (
                 RoadMap mapWithCars,

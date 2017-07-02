@@ -4,6 +4,9 @@ import java.util.*;
 import utils.*;
 
 public class LearningModuleImpl implements LearningModule {
+	
+	private static final long serialVersionUID = 1L;
+
     private static final int numCarSpaces = 9;
     private static final int numActions = 2;
     private static final int numRoads = 2;
@@ -323,4 +326,10 @@ public class LearningModuleImpl implements LearningModule {
         // potentially update ALPHA
         alpha = alpha;
     }
+    
+	@Override
+	public String toString() {
+		return "";
+	}
+    
 }

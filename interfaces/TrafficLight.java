@@ -1,5 +1,7 @@
 package interfaces;
 
+
+
 import utils.Coords;
 
 //interface for trafficLight object class - 
