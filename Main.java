@@ -4,6 +4,7 @@ import interfaces.RoadMap;
 import interfaces.TrafficLight;
 import utils.Coords;
 
+import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -135,6 +136,7 @@ public class Main {
             }
         Viewer v = graphicalOutput ? new Viewer() : null;
 
+        
         //Simulation tests
         int currentTimeStep;
 
@@ -324,7 +326,7 @@ public class Main {
           //Simulation time
 
           int index = 0;
-          String[] currIntensity = null;
+          String[] currIntensity = {"","","","","","","",""};
           String currTime = "";
           for (timeRan = 0; timeRan < SIMULATION_TIME; timeRan++) {
         	  if(timeRan % TESTING_INTENSITY_INTERVAL ==0) {
@@ -430,7 +432,9 @@ public class Main {
 
 
               if (graphicalOutput) {
-                  v.view(map, cars, trafficLights);
+                  v.view(map, cars, trafficLights, currIntensity);
+                 
+                  
               }
               if (consoleOutput) {
                   map.print(cars, trafficLights);
