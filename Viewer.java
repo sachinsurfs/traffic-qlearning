@@ -12,32 +12,36 @@ public class Viewer extends JFrame {
     private List<TrafficLight> l;
     private int init = 0;
 
+    private String[] intensity;
+    
     private static final int u = 10;
     private static final int w = 3; // we require 2*w < u
     private static final int n = 60;
+    
 
     private static final Color backgroundColor = new Color(0x7e7e7e);
     private static final Color roadColor = new Color(0x212323);
     private static final Color intersectBackground = roadColor;
     private static final Color error = Color.magenta;
     private static final int darkish = 0x3f;
-
+    
     public Viewer() {
         super();
         this.setSize(u*n, u*n);
         this.setVisible(true);
     }
 
-    public void view(RoadMap m, List<Car> c, List<TrafficLight> l) {
+    public void view(RoadMap m, List<Car> c, List<TrafficLight> l, String[] in) {
         this.m = m;
         this.c = c;
         this.l = l;
+        this.intensity = in; 
         if (init == 0) {
             init = 1;
         }
         this.repaint(0);
     }
-
+    
     private void stillLearning(Graphics g) {
         g.drawString("Still learning...", u*n/3, u*n/3);
     }
@@ -50,6 +54,24 @@ public class Viewer extends JFrame {
 
     private void displayMap(Graphics g) {
         g.setColor(roadColor);
+   
+        g.drawString("Queens Road/Minsk Sq Circle ", 0, 50); 
+        g.drawString("("+intensity[0]+")", 0, 65);   
+        g.drawString("Cubbon Road - Central St ", 230, 50); 
+        g.drawString("("+intensity[1]+")", 230, 65);   
+        g.drawString("Cubbon Road ", 480, 165);   
+        g.drawString("("+intensity[2]+")", 480, 180);   
+        g.drawString("MG Road ", 490, 365);
+        g.drawString("("+intensity[3]+")", 490, 380);   
+        g.drawString("St Marks Road ", 220, 575); 
+        g.drawString("("+intensity[4]+")", 220, 590);   
+        g.drawString("Kasturba Road-Queens Road ", 420, 575);  
+        g.drawString("("+intensity[5]+")", 420, 590);   
+        g.drawString("Kasturba Road - MG Road ", 0, 430);  
+        g.drawString("("+intensity[6]+")", 0, 445);   
+        g.drawString("Cubbon Road/Minsk Sq Circle ", 0, 235);        
+        g.drawString("("+intensity[7]+")", 0, 250);   
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; ++j) {
                 Coords k = new Coords(i, j);
