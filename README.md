@@ -26,7 +26,7 @@ A suitable extension would be to have large negative weights if important vehicl
     
 ## Visualization
 
-![Alt Text](https://github.com/prakhar-agarwal/traffic-qlearning/blob/master/gif/ambulance-1-d79d2a29f8.gif)
+![Alt Text](https://raw.githubusercontent.com/prakhar-agarwal/traffic-qlearning/master/gif/ambulance-1-d79d2a29f8.gif)
 
 * Values in brackets next to the roads are traffic intensity values fetched via HERE-MAPS api.
 * An ambulance is added(location randomly generated - RED/WHITE - MG Road to Kasturba Road) to indicate autonomous Traffic signals switching to provide congestion free path to important vehicles
